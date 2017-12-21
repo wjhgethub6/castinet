@@ -51,7 +51,7 @@ void exit_program(int ret)
 {
 	free(addrs);
 	freeaddrinfo(relaycast);
-        _exit(ret);
+	_exit(ret);
 }
 
 void getaddrinfo_error(int e)
@@ -63,44 +63,44 @@ void process_arg(int *i, char **argv)
 {
 	char *addr = NULL;
 
-        if (strcmp(argv[*i], "--help") == 0) {
-                print_usage(argv[0], 0);
-        }
-        else if (strcmp(argv[*i], "--addr") == 0) {
-                addr = argv[++(*i)];
-                addrs = realloc(addrs, sizeof(addrs) + sizeof(char *));
-                addrs[groups++] = addr;
-        }
+	if (strcmp(argv[*i], "--help") == 0) {
+		print_usage(argv[0], 0);
+	}
+	else if (strcmp(argv[*i], "--addr") == 0) {
+		addr = argv[++(*i)];
+		addrs = realloc(addrs, sizeof(addrs) + sizeof(char *));
+		addrs[groups++] = addr;
+	}
 	else if (strcmp(argv[*i], "--debug") == 0) {
 		loglevel = 127;
 	}
-        else if (strcmp(argv[*i], "--port") == 0) {
-                port = argv[++(*i)];
-        }
+	else if (strcmp(argv[*i], "--port") == 0) {
+		port = argv[++(*i)];
+	}
 	else if (strcmp(argv[*i], "--grp") == 0) {
 		groupname = argv[++(*i)];
-	        logmsg(LOG_INFO, "group: %s", groupname);
+		logmsg(LOG_INFO, "group: %s", groupname);
 	}
 	else if (strcmp(argv[*i], "--relay") == 0) {
 		relay = 1;
 		relayaddr = argv[++(*i)];
-	        logmsg(LOG_INFO, "relay address: %s", relayaddr);
+		logmsg(LOG_INFO, "relay address: %s", relayaddr);
 	}
-        else if (strcmp(argv[*i], "--src") == 0) {
-                src = argv[++(*i)];
-        }
-        else {
-                print_usage(argv[0], 1);
-        }
+	else if (strcmp(argv[*i], "--src") == 0) {
+		src = argv[++(*i)];
+	}
+	else {
+		print_usage(argv[0], 1);
+	}
 }
 
 void process_args(int argc, char **argv)
 {
-        int i;
+	int i;
 
-        if (argc > 1) {
-                for (i = 1; i < argc; ++i) process_arg(&i, argv);
-        }
+	if (argc > 1) {
+		for (i = 1; i < argc; ++i) process_arg(&i, argv);
+	}
 }
 
 int handle_msg(int sock, char *dstaddr, char *data, int data_len)
@@ -239,8 +239,8 @@ int main(int argc, char **argv)
 
 	if (groups == 0) {
 		addr = default_group;
-                addrs = realloc(addrs, sizeof(addrs) + sizeof(char *));
-                addrs[groups++] = addr;
+		addrs = realloc(addrs, sizeof(addrs) + sizeof(char *));
+		addrs[groups++] = addr;
 	}
 
 	/* join multicast groups */

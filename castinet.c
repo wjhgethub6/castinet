@@ -57,43 +57,43 @@ int hashgroup(char *baseaddr, char *groupname, char *hashaddr)
 
 void logmsg(int level, char *msg, ...)
 {
-        va_list argp;
-        char *b;
+	va_list argp;
+	char *b;
 
-        if ((loglevel & level) != level)
-                return;
+	if ((loglevel & level) != level)
+		return;
 
-        va_start(argp, msg);
-        b = malloc(_vscprintf(msg, argp) + 1);
-        assert(b != NULL);
-        vsprintf(b, msg, argp);
-        va_end(argp);
-        fprintf(stderr, "%s\n", b);
-        free(b);
+	va_start(argp, msg);
+	b = malloc(_vscprintf(msg, argp) + 1);
+	assert(b != NULL);
+	vsprintf(b, msg, argp);
+	va_end(argp);
+	fprintf(stderr, "%s\n", b);
+	free(b);
 }
 
 void print_usage(char *prog, int ret)
 {
-        logmsg(LOG_ERROR, "%s", program_usage);
-        _exit(ret);
+	logmsg(LOG_ERROR, "%s", program_usage);
+	_exit(ret);
 }
 
 void sig_handler(int signo)
 {
-        switch (signo) {
-        case SIGINT:
-                exit_program(0);
-        default:
-                break;
-        }
+	switch (signo) {
+	case SIGINT:
+		exit_program(0);
+	default:
+		break;
+	}
 }
 
 int _vscprintf (const char * format, va_list argp)
 {
-        int r;
-        va_list argc;
-        va_copy(argc, argp);
-        r = vsnprintf(NULL, 0, format, argc);
-        va_end(argc);
-        return r;
+	int r;
+	va_list argc;
+	va_copy(argc, argp);
+	r = vsnprintf(NULL, 0, format, argc);
+	va_end(argc);
+	return r;
 }
