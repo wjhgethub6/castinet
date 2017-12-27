@@ -21,7 +21,7 @@
 #ifndef __CASTINET_CASTINET_H__
 #define __CASTINET_CASTINET_H__ 1
 
-#ifndef __USE_KERNEL_IPV6_DEFS
+#if !__USE_KERNEL_IPV6_DEFS
 struct in6_pktinfo
 {
 	struct in6_addr ipi6_addr;  /* src/dst IPv6 address */
